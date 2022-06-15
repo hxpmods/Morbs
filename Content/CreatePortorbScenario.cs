@@ -20,6 +20,10 @@ namespace Morbs.Content
 
         public static void CreateScenario()
         {
+            //If you call your event "MyEvent" and your conversation "Scenario/MyEvent", 
+            //the game will load your conversation when your event loads. 
+            //The event looks for the conversation name with "Scenario/" at the front of it in the conversation database
+            
             var scenario = ScenarioFactory.CreateFromBaseGame("PeglinMod/TestScenario");
             ScenarioFactory.modScenarios.Add(scenario);
             //scenario.ignoreRemove = true;
@@ -40,6 +44,7 @@ namespace Morbs.Content
             var d1 = t.CreateDialogueEntry(1, 69, "");
             d1.ActorID = 2;
             d1.DialogueText = "plinth"; //We use a key generated via the Entry to actually display texts, however, if DialogueText is empty this will not happen. 
+                                        //See Plugin.cs, to see the format of these localization keys
 
             var d2 = t.CreateDialogueEntry(2, 69, "");
             d2.ActorID = 1;
