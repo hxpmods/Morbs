@@ -29,11 +29,11 @@ namespace Morbs.Content
         {
             var t = Template.FromDefault();
             var c = t.CreateConversation(69, "Scenario/PeglinMod/TestScenario");
-            c.fields[2].value = "1";
-            c.fields[3].value = "2";
+            c.fields[2].value = "1"; //Not sure if needed, but base game does this.
+            c.fields[3].value = "2"; //These fields reference the speakers in the covnersation, 1 is Peglin (ie, responses), 2 is everything else (ie, dialogue)
 
             var d0 = t.CreateDialogueEntry(0, 69, "START");
-            d0.Sequence = "None()";
+            d0.Sequence = "None()"; //Sequence has different keys that do different things, "None()" seems to work as an auto skip. Each conversation in the base game has a "START" entry, but it might not be needed.
             d0.ActorID = 1;
 
 
@@ -68,7 +68,9 @@ namespace Morbs.Content
             var d8 = t.CreateDialogueEntry(8, 69, "");
             d8.ActorID = 1;
             d8.DialogueText = "takeOrb";
-
+            
+            
+            //Here we add a delegate to d8 entry to add an Orb to our deck when we reach this point in the conversation.
             var dm = UnityEngine.Resources.FindObjectsOfTypeAll<DeckManager>()[0];
 
             Plugin.logger.LogMessage("Deckmanager:" + dm);
@@ -171,7 +173,7 @@ namespace Morbs.Content
             d19.outgoingLinks.Add(new Link(69, 19, 69, 9) { isConnector = true });
 
             d20.outgoingLinks.Add(new Link(69, 20, 69, 21) { isConnector = true });
-
+            
             d21.outgoingLinks.Add(new Link(69, 21, 69, 5) { isConnector = true });
             d21.outgoingLinks.Add(new Link(69, 21, 69, 3) { isConnector = true });
 
